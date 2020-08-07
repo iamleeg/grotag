@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="external/JSAP.jar"/>
+	<classpathentry kind="lib" path="external/twelvemonkeys-imageio-core.jar"/>
+	<classpathentry kind="lib" path="external/twelvemonkeys-imageio-iff.jar"/>
+	<classpathentry kind="lib" path="external/twelvemonkeys-core.jar"/>
+	<classpathentry kind="lib" path="external/xalan.jar"/>
+	<classpathentry kind="lib" path="external/serializer.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="classes"/>
+</classpath>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE grotag-version [<!ELEMENT grotag-version (version,release,revision,date)>
+<!ELEMENT version (#PCDATA)>
+<!ELEMENT revision (#PCDATA)>
+<!ELEMENT release (#PCDATA)>
+<!ELEMENT date (#PCDATA)>
+]>
+<grotag-version>
+  <version>0</version>
+  <release>3</release>
+  <revision>0</revision>
+  <date>2016-11-15</date>
+</grotag-version>

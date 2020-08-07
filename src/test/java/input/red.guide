@@ -1,0 +1,17 @@
+@database Red
+@smartwrap
+
+
+@node Main "Red"
+
+This is the red guide, which is used to test link validation in a GuidePile.
+
+Go to:
+@{"Root" link "root.guide/Main"} - Back to the root.
+@{"Blue" link "blue.guide/Main"} - Something blue.
+@{"Green" link "green.guide/Main"} - Something green.
+@{"Broken Link" link "non_existent.guide/blah"} - This one won't work.
+
+Nothing else to see here.
+@endnode
+

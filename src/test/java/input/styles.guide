@@ -1,0 +1,44 @@
+@database styles.guide
+
+@node main "valid styles"
+
+plain
+@{b}bold@{ub}
+@{i}italic@{ui}
+@{u}underline@{uu}
+@{b}@{i}@{u}bold, italic and underline@{uu}@{ui}@{ub}
+
+@remark open bold, open italic, close bold, close italic
+@{b}bold, @{i}bold and italic@{ub}, italic@{ui}, plain
+
+foreground and backgrund colors
+@{fg back}@{bg text}back, text
+@{fg background}@{bg text}background, text
+@{fg fill}@{bg back}text, back
+@{fg filltext}@{bg back}text, back
+@{fg highlight}@{bg back}text, back
+@{fg shadow}@{bg back}text, back
+@{fg shine}@{bg back}text, back
+@{fg text}@{bg back}text, back
+
+pens:
+0 @{bpen 0}   @{bpen 0}
+1 @{bpen 1}   @{bpen 0}
+2 @{bpen 2}   @{bpen 0}
+3 @{bpen 3}   @{bpen 0}
+4 @{bpen 4}   @{bpen 0}
+5 @{bpen 5}   @{bpen 0}
+6 @{bpen 6}   @{bpen 0}
+7 @{bpen 7}   @{bpen 0}
+
+@endnode
+
+@node ugly "ugly styles"
+
+undefined pen
+9 @{bpen 9}   @{bpen 0}
+
+@{b}unterminated bold
+
+@endnode
+

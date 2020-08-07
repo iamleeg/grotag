@@ -1,0 +1,88 @@
+@database basics.guide
+@$VER: 1.0 basics.guide (12/13/2001)
+@remark I don't intend to manually maintain the version date. This is stupid.
+@author Thomas Aglassinger
+@(c) 2008 Thomas Aglassinger
+@font Helvetica.font 13
+
+@node Main "Basic Amigaguide features"
+This Guide demonstrates some of the basic features of @{amigaguide}.
+
+@{"Playing with text" link "text"} - various things that can be done with text & style.
+@{"Preformatted Text" link "preformatted"} - a preformatted layout.
+@{"Wordwrapped Text" link "wordwrapped"} - uses wordwrap.
+@{"Smartwrapped Text" link "smartwrapped"} - uses smartwrap.
+@{"Monospaced Node" link "monospaced"} - shows the text in a monospaced font.
+
+@endnode
+
+
+@node text "Playing with text"
+Here are some things that can be done with text:
+
+Escape characters: at-sign (\@), backslash (\\)
+Special characters: äöüß§
+
+@{b}bold @{ub}@{i}italic @{ui}@{u}underline@{uu}
+@{b}bold @{i}bold+italic @{i}all@{uu}bold+italic @{ui}bold @{ub}
+@{b}bold @{i}bold+italic @{i}all@{ui}bold+underline @{ub}underline @{uu}
+
+Here is some text from an embedded file:
+@embed "embedded.txt"
+And here we are back again in the main document.
+@endnode
+
+
+@node Preformatted "Preformatted Text"
+Here is some preformatted text.
+This means viewers and converters
+will preserve line breaks as specified
+in the source document.
+@endnode
+
+
+@node WordWrapped "Wordwrapped Text"
+@wordwrap
+Here is some wordwrapped text, meaning that every line in the source code is treated as paragraph. While this looks nice for the reader, it is a PITA for the author.
+Take a look at the source to see what I mean.
+@endnode
+
+
+@node SmartWrapped "Smartwrapped Text"
+@smartwrap
+This text uses smartwrap, which means a single
+line break will not start a new paragraph. This is
+nice for the author because unlike with wordwrap,
+the text can be split over several lines without the
+need for horizontal scrolling.
+
+To start a new paragraph, simply leave an empty
+line.
+
+Like this.
+
+And this.
+
+See what I mean?
+
+Probably not unless you took a closer look at the
+source code.
+
+@endnode
+
+
+@node MonoSpaced "Monospaced Node"
+@font Topaz.font 9
+Unlike the rest of the document, this node uses a monospaced font.
+
+Which is nice for ASCII art, so here's a classic:
+
+         (__)
+         (oo)                       U
+  /-------\\/                    /---V
+ / |     ||                    * |--|                       .
+*  ||----||
+   ^^    ^^
+Cow at 1 meter.         Cow at 100 meters.        Cow at 10,000 meters.
+@endnode
+

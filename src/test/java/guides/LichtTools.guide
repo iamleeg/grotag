@@ -1,0 +1,218 @@
+@database LichtTools.guide
+@$VER: LichtTools.guide 1.1 (17.07.08)
+@WORDWRAP
+
+
+@NODE Main "LichtTools Guide 1.1 Copyright © 1995-2008 Michael Gehmair"
+
+         Table of Contents:
+
+         Welcome to the @{b}LichtTools@{ub} AmigaGuide®.
+         Select any of the following topics:
+
+         @{" Introduction          " LINK Introduction}
+         @{" System requirements   " LINK Requirements}
+         @{" Installation          " LINK Installation}
+         @{" Usage                 " LINK Usage}
+         @{" License               " LINK License}
+         @{" About the author      " LINK Author}
+         @{" About LichtTools Pro  " LINK Register}
+         @{" Program History       " LINK History}
+
+@endnode
+
+
+
+@node Introduction "LichtTools Documentation - Introduction"
+
+Introduction
+************
+
+When I was young, someone gave me a bulb for a birthday present. The great thing about this bulb was, when screwed into a lamp, there was light. This turned out to be especially useful for reading books. Even if it was dark outside!
+
+But after some years, my sweet little bulb died without any warning at all. This was the darkest day of my life.
+
+I felt very depressed for quite a long time. I even thought about committing suicide, because people always tell about a light at the end of a tunnel - this just had to be my little bulb!
+
+But maybe then I would not be able to read books again, so this was no solution.
+
+Luckily, I remembered my good old Amiga and decided to make my sweet little bulb immortal by programming a bulb-simulator...
+
+This is for you, bulby! <snif>
+
+@endnode
+
+
+@node Requirements "LichtTools Documentation - Requirements"
+
+Requirements
+************
+
+Any Monitor that can display a 15KHz signal.
+
+@endnode
+
+@node Installation "LichtTools Documentation - Installation"
+
+Installation
+************
+
+Just drag the LichtTools drawer anywhere you want.
+
+@endnode
+
+@NODE About  "LichtTools Documentation - About the program"
+@TOC Main
+
+Copyright (c) 1995-2008, Michael Gehmair
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+* Neither the name of the Michael Gehmair nor the names of its contributors
+  may be used to endorse or promote products derived from this software
+  without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+@ENDNODE
+
+@NODE Usage "How to use it"
+@TOC Main
+
+Usage
+*****
+
+The LichtTools-package consists of three tools:
+
+         @{" Licht     " LINK licht}
+         @{" Finster   " LINK finster}
+         @{" Finster2  " LINK finster2}
+
+To start via Workbench, simply click the icons WBlicht/WBfinster/WBfinster2.
+
+To start via CLI, type "licht"/"finster"/"finster2".
+
+
+@ENDNODE
+
+@NODE licht "Licht"
+@TOC Usage
+
+@{b}Licht@{ub} (light)
+
+Licht simulates a fully functional bulb. Though not with the full strength of a real 100W-bulb, it provides still enough light to read a book in front of the monitor.
+
+If you finished reading, you can abort the simulation pressing the left mouse button.
+
+@ENDNODE
+
+@NODE finster "Finster"
+@TOC Usage
+
+@{b}Finster@{ub} (dark)
+
+Real bulb only can spend light. They can not spend darkness (which is a great disadvantage).
+
+In order to do so, the marvelous "Finster"-tools has been included into the LichtTools package.
+
+As an additional feature, it can also be used as a real screen-blanker.
+
+If you finished starring into the dark, you can abort the simulation pressing the left mouse button.
+
+@ENDNODE
+
+@NODE finster2 "Finster2"
+@TOC Usage
+
+@{b}Finster2@{ub} (dark2) (dark, too)
+
+This tool is an enhanced version of dark, especially written for Lukas Angermayer.
+
+He owned a 17" monitor (non-15KHz), attached to a Picasso-II-graphics board, and a 14" monitor (15KHz).
+
+When working in a Picasso-screenode, the 14" monitor just displayed flickering, annoying garbage.
+
+Finster2 darkens the 15KHz display (14" monitor) and leaves the Picasso-screen active.
+
+@ENDNODE
+
+@NODE Author "LichtTools Documentation - About the Author"
+@TOC Main
+
+If you have suggestions or remarks about this program, or if you find any bugs, please let me know.
+
+When sending in bug reports, please state exactly under what circumstances the bug occurred, what equipment was used and what happened. If possible also try to give me enough information to reproduce the bug. It is very difficult to find bugs when you don't know exactly what happened.
+
+Write to the following address:
+
+  mikesp@users.sourceforge.net
+
+You can also visit the LichtTools homepage at
+
+  <http://lichttools.sourceforge.net/>
+
+and leave a message in the forum or post suggestions and bug at the respective trackers.
+
+@ENDNODE
+
+@node Register "LichtTools Documentation - About LichtTools Pro"
+
+About LichtTools Pro
+********************
+
+If you like LichtTools and want to ensure continues support and development, consider registering for one of the following packages with additional features:
+
+@{b}LichtTools Light@{ub}
+
+Consists of Licht, Finster, Finster2 and Dimmer. With Dimmer, you can create a link between Licht and Finster. That means, you can increase/decrease brightness (or darkness) by pressing the "F1" or "F2" key.
+Source for Dimmer is not included.
+
+Shareware fee: 1 Euro / 2 US$
+
+
+@{b}LichtTools Pro@{ub}
+
+Consists of Licht, Finster, Finster2, Dimmer and the Dimmer2. Dimmer2 comes with a blueprint (ILBM) of a hardware-extension, that enables you to externally control Dimmer.
+Source for Dimmer and Dimmer2 is included.
+
+Shareware fee: 2 Euro / 4 US$
+
+
+@{" Contact " LINK Author} me for details on payment and shipping.
+
+@endnode
+
+
+
+@node History "LichtTools Documentation - History"
+
+History
+*******
+
+Version 1.1, 17-Jul-2008
+        - Changed license to BSD License instead of a carefully handmade pseudo Open Source License with a (joking) need for registration.
+        - Updated contact information.
+        - Changed currency for (fake) Shareware fee for Light and Pro edition to EUR (instead of ATS and DM) and adjusted the amount to the dying US$'s exchange rate.
+        - Cleaned up spelling.
+
+Version 1.0, 28-Sep-1995
+        - Initial release.
+
+@endnode
+ 

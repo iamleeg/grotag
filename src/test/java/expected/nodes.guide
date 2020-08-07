@@ -1,0 +1,26 @@
+@database nodes.guide
+@node notitle
+a node without a title
+@endnode
+@node some "normal node"
+just a normal node
+@endnode
+@remark node without name
+@node unnamed.1
+node without name
+@endnode
+@node missingEndNode "node with missing endnode"
+this node does not have an @endnode
+
+@endnode
+@node afterMissingEndNode "node after node with missing endnode"
+an @endnode should be added before this none
+@endnode
+@remark dangling @endnode without @node
+@node unnamed.2 "node with duplicate name"
+node with duplicate name
+@endnode
+@node missingEndNodeAtEndOfFile
+missing @endnode at end of file
+
+@endnode

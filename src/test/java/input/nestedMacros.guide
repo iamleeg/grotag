@@ -1,0 +1,13 @@
+@database nestedMacros.guide
+@macro parentMacro "parent macro insertig @{childMacro}"
+@macro childMacro "text from child macro and @{grandChildMacro}"
+@macro grandChildMacro "text from grand child macro"
+
+@node main "nested macros"
+
+@{grandChildMacro}
+@{childMacro}
+@{parentMacro}
+
+@endnode
+

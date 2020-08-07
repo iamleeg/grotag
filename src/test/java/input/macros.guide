@@ -1,0 +1,50 @@
+@database macros.guide
+
+@macro globalMacro "text from global macro: arg1=$1, arg2=$2"
+
+@node main "some macros"
+@macro nodeMacro "text from node macro"
+@macro tenOptionMacro "many options: $1, $2, $3, $4, $5, $6, $7, $8, $9, $10"
+@macro parentMacro "parent macro insertig @{childMacro}"
+@macro childMacro "text from child macro and from @{grandChildMacro}"
+@macro grandChildMacro "text from grand child macro"
+
+
+normal text
+@{globalMacro hugo sepp}
+@{globalMacro hugo}
+@{nodeMacro}
+
+macro call with 10 options: @{tenOptionMacro a b c d e f g h i j}
+macro call with too many options: @{globalMacro hugo sepp resi}
+
+@{parentMacro}
+@{childMacro}
+@{grandChildMacro}
+
+@{b}bold text?@{ub}
+
+@endnode
+
+
+@node other "other (somewhat nasty) macros"
+
+@rem This attempts to locally redefine nodeMacro. In reality, the first
+@rem definition still still counts and this one is discarded.
+@macro nodeMacro "text from other node macro"
+
+@rem This redefines the @{b} so that it becomes italic instead of bold.
+@rem This effects the whole document.
+@macro b "@{i}no more bold;"
+
+other normal text
+
+macros inside macros:
+@{globalMacro hugo sepp}
+@{nodeMacro}
+@{b}bold text@{ub}
+
+@rem This will crash AmigaOS 3.9 (and probably earlier versions too).
+@rem @macro u "@{u}"
+
+@endnode

@@ -1,0 +1,11 @@
+@database Blue
+@smartwrap
+
+
+@node Main "Blue"
+This is the blue guide, which is used to test link validation in a GuidePile.
+
+Go to:
+@{"Root" link "root.guide/Main"} - Back to the root
+@endnode
+

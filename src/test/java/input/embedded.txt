@@ -1,0 +1,5 @@
+This is some text embedded from a text file.
+
+As you can see, Amigaguide commands in at are @{b}not@{ub} processed.
+
+Note that there is no newline character at the end of this file

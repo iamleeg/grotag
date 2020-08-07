@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <title>Grotag</title>
+    <meta name="description" content="Grotag - View, convert, validate
+      and pretty print Amigaguide documents.">
+    <meta name="keywords" content="Amigaguide, view, convert, validate,
+      pretty, DocBook, HTML, XML">
+  </head>
+  <body style="font-family: sans-serif; color: rgb(0, 0, 0);
+    background-color: rgb(204, 204, 204);" alink="#000099"
+    link="#000099" vlink="#990099">
+    <p><a href="#about">About</a> | <a href="#download">Download</a> |
+      <a href="#examples">Examples</a> | <a href="#usage">Usage</a> |
+      <a href="http://sourceforge.net/forum/forum.php?forum_id=850444">Forum</a>
+      | <a href="#development">Development</a></p>
+    <h1>Grotag</h1>
+    <p style="font-style: italic;">"Get rid of them Amigaguides"</p>
+    <h2 id="about">About Grotag</h2>
+    <p>Grotag views Amigaguide documents or converts them to HTML and
+      DocBook
+      XML. Additionally it can validate and pretty print such documents.</p>
+    <p>It is distributed under the <a href="license.txt">GNU General
+        Public License</a>, version 3 or
+      later.</p>
+	<img src="images/screenshot.png">
+    <h2 id="features">Features</h2>
+    <ul>
+      <li>Follows links to other documents when converting.</li>
+      <li>Points out errors in documents but still keeps reading it.</li>
+      <li>Optional mapping for links referring to Amiga files using
+        devices
+        and assigns to local files. </li>
+      <li>Supports wrapping of paragraphs: <span style="font-family:
+          monospace;">@smartwrap</span>, <span style="font-family:
+          monospace;">@wordwrap</span>.</li>
+      <li>Supports <span style="font-family: monospace;">@macro</span>.</li>
+    </ul>
+    <p>There are however also some limitations, most notably:</p>
+    <ul>
+      <li>No support yet for font styles such as <span
+          style="font-family: monospace;">@{b}</span>.</li>
+      <li>No support yet for most v40 layout and style commands. </li>
+    </ul>
+    <h2 id="download">Download</h2>
+    <p>To obtain Grotag, visit the <a
+        href="https://sourceforge.net/projects/grotag/files/latest/download">download
+        page</a>.</p>
+    <h2 id="examples">Examples</h2>
+    <p>The easiest way to describe what kind of output you can expect
+      from
+      Grotag are examples, so here are a few:</p>
+    <ul>
+      <li>
+        <p><a href="examples/basics.guide">Basics.guide</a> is a test
+          document that exercises several features of Amigaguide. With <span
+            style="font-family: monospace;">--docbook</span>,
+          you get <a href="examples/basics.xml">basics.xml</a>, which
+          in turn
+          can be converted to <a href="examples/basics.html">basics.html</a>.</p>
+        <p>Note that <span style="font-family: monospace;">--docbook</span>
+          deliberately removes all formatting
+          attributes and
+          simlpy preserves the document structure.This kind of output is
+          useful
+          if you want to migrate an existing Amigiuaguide manual and
+          keep editing
+          it. DocBook does not support "physical" styles such as "bold"
+          or
+          "italic", instead there is a huge amount of logical styles
+          that can
+          assign meaning to terms. Only a human author will be able to
+          choose the
+          proper logical style. Grotag has no way of knowing the
+          original meaning
+          behind a certain physical style in the original Amigaguide
+          document.</p>
+      </li>
+      <li><a href="examples/root.guide">Root.guide</a> is a base
+        document
+        that links to several others: <a href="examples/red.guide">red.guide</a>,
+        <a href="examples/green.guide">green.guide</a>, <a
+          href="examples/blue.guide">blue.guide</a>. This shows how
+        Grotag
+        handles the different kind of links, such as <span
+          style="font-family: monospace;">@alink</span>, <span
+          style="font-family: monospace;">@guide</span> or <span
+          style="font-family: monospace;">@link</span>.
+        In practice, you should only use <span style="font-family:
+          monospace;">@link</span> these days, but Grotag is
+        perfectly capable of working with the legacy commands. Using <span
+          style="font-family: monospace;">--docbook</span>
+        again, we get <a href="examples/root.xml">root.xml</a> which
+        can be
+        converted to <a href="examples/root.html">root.html</a>.</li>
+    </ul>
+    <h2 id="development">Usage</h2>
+    <p>The <a href="user-guide.html">User Guide</a> describes how to
+      work
+      with Grotag. Currently it is a rough draft.</p>
+    <h2 id="development">Development</h2>
+    <p>The <a href="https://sourceforge.net/projects/grotag/">Grotag
+        project site</a> is hosted by <a href="http://sourceforge.net/">SourceForge.net</a>
+      and contains the resources used for the development of Grotag.</p>
+    <p>The source code is available from a <a
+        href="http://subversion.tigris.org/">Subversion</a> repository
+      which you can browse at <a
+        href="http://grotag.svn.sourceforge.net/viewvc/grotag/">http://grotag.svn.sourceforge.net/viewvc/grotag/</a>.
+      To check out the current version from the repository, use</p>
+    <div style="margin-left: 40px;">svn&nbsp;checkout&nbsp;https://grotag.svn.sourceforge.net/svnroot/grotag/<span
+        style="font-style: italic;"></span>trunk grotag<span
+        style="font-style: italic;"></span></div>
+    <p>After the check out, run</p>
+    <p style="margin-left: 40px;">ant setup</p>
+    <p>This extracts some resources need for DocBook transformation. You
+      need
+      to do this only the first time.</p>
+    <p>After that, run</p>
+    <p style="margin-left: 40px;">ant</p>
+    <p>to build Grotag.jar and Grotag.zip</p>
+    <p>In case you add a feature or fix a bug,
+      feel free to submit your changes using the <a
+        href="http://sourceforge.net/tracker/?group_id=233964&amp;atid=1092388">patch
+        tracker</a>.</p>
+    <a href="http://sourceforge.net"><img
+        src="http://sourceforge.net/sflogo.php?group_id=grotag&amp;type=1"
+        alt="SourceForge.net Logo" border="0" height="31" width="88"></a>
+  </body>
+</html>

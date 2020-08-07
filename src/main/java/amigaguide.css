@@ -1,0 +1,28 @@
+/* CSS classes for HTML documents converted from Amigaguide by Grotag. */
+body {background: silver; color: black; font-family: sans-serif; margin: 4pt}
+a:link {color: blue; text-decoration: none; outline: solid gray}
+a:visited {color: purple; text-decoration: none; outline: solid gray}
+.apen0 { color: silver }
+.apen1 { color: black }
+.apen2 { color: white }
+.apen3 { color: blue }
+.apen4 { color: yellow }
+.apen5 { color: navy }
+.apen6 { color: green }
+.apen7 { color: red }
+.bpen0 { background: silver }
+.bpen1 { background: black }
+.bpen2 { background: white }
+.bpen3 { background: blue }
+.bpen4 { background: yellow }
+.bpen5 { background: navy }
+.bpen6 { background: green }
+.bpen7 { background: red }
+.monospace { font-family: monospace }
+.b { font-weight: bold }
+.bi { font-weight: bold; font-style: italic }
+.biu { font-weight: bold; font-style: italic; text-decoration: underline }
+.i {font-style: italic }
+.iu {font-style: italic; text-decoration: underline }
+.u {text-decoration: underline }
+

@@ -1,0 +1,19 @@
+@database Green
+@smartwrap
+
+
+@node Main "Green"
+This is the green guide, which is used to test link validation in a GuidePile.
+
+Go to:
+@{"Root" link "root.guide/Main"}
+@{"Red" link "red.guide/Main"}
+@{"Green" link "green.guide/Main"}
+@{"Local leave" link "Local"}
+@endnode
+
+
+@node local "Local Node"
+This is a local node.
+@endnode
+

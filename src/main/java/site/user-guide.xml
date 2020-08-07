@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<book id="top-of-user-guide">
+  <bookinfo>
+    <title>Grotag User Guide</title>
+
+    <keywordset>
+      <keyword>Amigaguide</keyword>
+
+      <keyword>view convert</keyword>
+
+      <keyword>pretty</keyword>
+
+      <keyword>DocBook</keyword>
+
+      <keyword>HTML</keyword>
+    </keywordset>
+
+    <copyright>
+      <year>2008-2016</year>
+
+      <holder>Thomas Aglassinger</holder>
+    </copyright>
+
+    <legalnotice>
+      <para>Permission is granted to copy, distribute and/or modify this
+      document under the terms of the GNU Free Documentation License, Version
+      1.2 or any later version published by the Free Software Foundation; with
+      no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts. A
+      copy of the license is included in the section entitled "GNU Free
+      Documentation License".</para>
+    </legalnotice>
+
+    <releaseinfo>$Revision: 231 $</releaseinfo>
+
+    <author>
+      <firstname>Thomas</firstname>
+
+      <surname>Aglassinger</surname>
+    </author>
+  </bookinfo>
+
+  <preface id="introduction">
+    <title>Introduction</title>
+
+    <para>Grotag views Amigaguide documents or converts them to HTML and
+    DocBook XML. Additionally it can validate and pretty print such
+    documents.</para>
+
+    <para>Amigaguide is a file format and application for AmigaOS<footnote>
+        <para>The original Amigaguide is still available from any Aminet
+        mirror, for example <ulink
+        url="http://aminet.net/text/hyper/aguide34.lha"/>.</para>
+      </footnote>. It enables to author and view hypertext documentation to
+    some extend comparable to HTML or WinHelp. Most of the online
+    documentation written for Amiga applications or about developing Amiga
+    applications uses Amigaguide. Outside of AmigaOS however Amigaguide is
+    unused and consequently hardly any viewers exist.</para>
+
+    <para>Although most Amigaguide documents are not particular useful without
+    access to an Amiga (real or emulated), occasionally a need arises to read
+    such documentation on other platforms. Grotag is designed to address this
+    need. It allows to convert Amigaguide documents to the platform
+    independent HTML format, for which viewers exist on any reasonably modern
+    system. Furthermore you can convert to DocBook, a format popular for
+    technical documentations, allowing to bring along existing manuals into
+    the 21st century for further editing.</para>
+
+    <para>Grotag is written in Java (version 1.5 or later), which is supported
+    by many current platforms such as Mac OS X (version 10.5 or later),
+    Windows and Linux to name just a few.</para>
+
+    <para>To find out what is new in this version, see the <link
+    linkend="changes">revision history</link>. For updates and support, visit
+    the Grotag homepage at <ulink
+    url="http://grotag.sourceforge.net/">http://grotag.sourceforge.net</ulink>.</para>
+  </preface>
+
+  <chapter id="installation">
+    <title>Installation</title>
+
+    <section id="download">
+      <title>Mac OS X</title>
+
+      <para>For Mac OS X, visit <ulink
+      url="http://grotag.sourceforge.net/">http://grotag.sourceforge.net</ulink>
+      and download <filename>Grotag-x.y-z.dmg</filename>, where
+      <filename>x.y.z</filename> refers to the current version number. Double
+      click the disk archive to mount its contents as new device and open it
+      in the Finder. It contains an application named Grotag resp. Grotag.app.
+      Simply drag and drop this application in any folder you like to launch
+      it from, for example <filename>/Applications</filename> or
+      <filename>~/Applications</filename>.</para>
+    </section>
+
+    <section>
+      <title>Other platforms</title>
+
+      <para>For other platforms, visit <ulink
+      url="http://grotag.sourceforge.net/">http://grotag.sourceforge.net</ulink>
+      and download <filename>Grotag-x.y.zip</filename>, where
+      <filename>x.y.z</filename> refers to the current version number. After
+      extracting the archive, you should see at least the following
+      files:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><filename>Grotag.jar</filename> - The application Java
+          archive.</para>
+        </listitem>
+      </itemizedlist>
+
+      <itemizedlist>
+        <listitem>
+          <para><filename>license.txt</filename> - A text file describing your
+          rights related to Grotag. In short: It is an Open Source application
+          and you do not have to pay money for it.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>Now simply move Grotag.jar to a folder from where you want to
+      start it. Under Windows, this could be in <filename>C:\Programe
+      Files</filename>, under Unix it might be
+      <filename>/usr/local/bin</filename> or
+      <filename>~/bin</filename>.</para>
+
+      <para>To launch Grotag from most Desktop environments, simply double
+      click <filename>Grotag.jar</filename>. In case this does not work you
+      have to use the command line as described in <xref
+      linkend="command-line-usage"/>.</para>
+    </section>
+  </chapter>
+
+  <chapter>
+    <title>The user interface</title>
+
+    <para>This chapter describes how to perform common tasks with Grotag using
+    the graphical user interface. This provides a comfortable way to access
+    most functions using the mouse and keyboard. For repetitive tasks and
+    automatization a probably better choice is described in <xref
+    linkend="command-line-usage"/>.</para>
+
+    <section>
+      <title>Launch Grotag</title>
+
+      <para>To launch Grotag under Mac OS X, simply double click the
+      application icon or drop a <filename>*.guide</filename> file on
+      it.</para>
+
+      <para>To launch Grotag on most other platforms, simply double click
+      <filename>Grotag.jar</filename> on the desktop.</para>
+
+      <para>In case this does not work, open a terminal window (console) and
+      enter:</para>
+
+      <para><userinput>java -jar .../path/to/Grotag.jar</userinput></para>
+
+      <para>Soon after that Grotag should present you an empty window.</para>
+    </section>
+
+    <section>
+      <title>Open an Amigaguide document</title>
+
+      <para>In order to read an Amigaguide document, you have to open one
+      using the menu entry <menuchoice>
+          <guimenu>File</guimenu>
+
+          <guimenuitem>Open</guimenuitem>
+        </menuchoice>. In the resulting dialog select the file and click the
+      <guibutton>Open</guibutton> button. Grotag loads the document, including
+      all linked documents. For complex guides (such as the Amiga ROM Kernel
+      Reference Manuals) this may take a while. Watch the progress bar in the
+      lower right corner of the window to estimate how long it still going to
+      take.</para>
+    </section>
+
+    <section>
+      <title>Browse a document</title>
+
+      <para>Once the document has been opened, you can browse it. As
+      Amigaguide is a hyper text format just like HTML, viewers for it are
+      fairly similar to web browsers. A major difference however is that
+      Amigaguide automatically relates previous and next pages, so it is
+      easily possible to sequentially browse a document with a standardized
+      user interface. Furthermore authors can specify special pages containing
+      a table of contents, an index, or a help page.</para>
+
+      <para>Grotag offers several toolbar buttons and menu items to easily
+      access all these pages, refer to <xref linkend="commands.browse"/> for
+      details.</para>
+
+      <table>
+        <title id="commands.browse">Browsing a document</title>
+
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Task</entry>
+
+              <entry>Toolbar icon</entry>
+
+              <entry>Menu entry</entry>
+
+              <entry>Related Amigaguide command</entry>
+            </row>
+          </thead>
+
+          <tbody>
+            <row>
+              <entry>Browse back and forward through pages previously
+              viewed.</entry>
+
+              <entry><mediaobject>
+                  <imageobject>
+                    <imagedata fileref="images/back.png" format="PNG"/>
+                  </imageobject>
+                </mediaobject><mediaobject>
+                  <imageobject>
+                    <imagedata fileref="images/forward.png" format="PNG"/>
+                  </imageobject>
+                </mediaobject></entry>
+
+              <entry/>
+
+              <entry/>
+            </row>
+
+            <row>
+              <entry>Browse through the pages in sequential order. In case
+              these buttons are greyed out, you are already at the first or
+              last page. In case both of these buttons are greyed out, the
+              document has only one page.</entry>
+
+              <entry><mediaobject>
+                  <imageobject>
+                    <imagedata fileref="images/next.png" format="PNG"/>
+                  </imageobject>
+                </mediaobject><mediaobject>
+                  <imageobject>
+                    <imagedata fileref="images/previous.png" format="PNG"/>
+                  </imageobject>
+                </mediaobject></entry>
+
+              <entry><menuchoice>
+                  <guimenu>Go</guimenu>
+
+                  <guimenuitem>Next</guimenuitem>
+                </menuchoice>, <menuchoice>
+                  <guimenu>Go</guimenu>
+
+                  <guimenuitem>Previous</guimenuitem>
+                </menuchoice></entry>
+
+              <entry><code>@next</code>, <code>@previous</code></entry>
+            </row>
+
+            <row>
+              <entry>Go to the contents page for the current page. In case
+              this button is greyed out, the author did not specify a contents
+              page.</entry>
+
+              <entry><mediaobject>
+                  <imageobject>
+                    <imagedata fileref="images/contents.png" format="PNG"/>
+                  </imageobject>
+                </mediaobject></entry>
+
+              <entry><menuchoice>
+                  <guimenu>Go</guimenu>
+
+                  <guimenuitem>Contents</guimenuitem>
+                </menuchoice></entry>
+
+              <entry><code>@contents</code></entry>
+            </row>
+
+            <row>
+              <entry>Go to the page the document initially opened
+              with.</entry>
+
+              <entry><mediaobject>
+                  <imageobject>
+                    <imagedata fileref="images/home.png" format="PNG"/>
+                  </imageobject>
+                </mediaobject></entry>
+
+              <entry/>
+
+              <entry/>
+            </row>
+
+            <row>
+              <entry>Show the index page of the current document. In case this
+              button is greyed out, the author did not specify an index
+              page.</entry>
+
+              <entry><mediaobject>
+                  <imageobject>
+                    <imagedata fileref="images/index.png" format="PNG"/>
+                  </imageobject>
+                </mediaobject></entry>
+
+              <entry><menuchoice>
+                  <guimenu>Go</guimenu>
+
+                  <guimenuitem>Index</guimenuitem>
+                </menuchoice></entry>
+
+              <entry><code>@index</code></entry>
+            </row>
+
+            <row>
+              <entry>Go to the help page for this particular guide. Unlike the
+              Commodore Amigaguide application, Grotag does not provide a
+              default help explaining the controls. In case this button is
+              greyed out, the author did not specify a help page.</entry>
+
+              <entry><mediaobject>
+                  <imageobject>
+                    <imagedata fileref="images/help.png" format="PNG"/>
+                  </imageobject>
+                </mediaobject></entry>
+
+              <entry/>
+
+              <entry><code>@help</code></entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
+
+    <section>
+      <title>Export a document to a different format</title>
+
+      <para>In order to read a document without an Amigaguide reader, you can
+      export it to HTML or XHTML by using the menu entry <menuchoice>
+          <guimenu>File</guimenu>
+
+          <guimenuitem>Export</guimenuitem>
+        </menuchoice>. After you choose a base folder for the converted
+      documents, Grotag creates a folder with the same name as the Amigaguide
+      document without the suffix ".guide".</para>
+
+      <para>Additionally you can export to DocBook, which is useful if you
+      want to integrate the information stored in the Amigaguide in an
+      existing DocBook documentation. Be aware though that the DocBook variant
+      has all the formatting information removed.</para>
+    </section>
+  </chapter>
+
+  <chapter id="command-line-usage">
+    <title>Command line usage</title>
+
+    <section id="command-line-launch">
+      <title>Launch Grotag</title>
+
+      <para>To launch Grotag from the command line, open a terminal window
+      (console) and enter:</para>
+
+      <para><userinput>java -jar .../path/to/Grotag.jar
+      --help</userinput></para>
+
+      <para>Replace "<filename>.../path/to/</filename>" by the location of the
+      folder you extracted <filename>Grotag.zip</filename> to and where
+      <filename>Grotag.jar</filename> is located.</para>
+
+      <para>As a result, you should see a short description of the options you
+      can pass to Grotag. Don't worry about them now, all of them will be
+      explained later in this chapter.</para>
+
+      <para>Because it is somewhat boring to type that much each time you want
+      to launch Grotag, it is recommended to define a console alias. In bash,
+      simply enter:</para>
+
+      <para><userinput>alias grotag="java -jar
+      .../path/to/Grotag.jar"</userinput></para>
+
+      <para>After that, you can simply run</para>
+
+      <para><userinput>grotag --help</userinput></para>
+
+      <para>to get same result as before. To avoid having to retype the alias
+      each time you open a new terminal, add it to the shell startup file (for
+      example <filename>~/.bashrc</filename> or
+      <filename>~/.profile</filename> depending on your platform.)</para>
+    </section>
+
+    <section>
+      <title>Show help and other information</title>
+
+      <para>To read a short description of all options available for Grotag,
+      run:</para>
+
+      <para><userinput>grotag --help</userinput></para>
+
+      <para>To learn which version of Grotag you are using, run:</para>
+
+      <para><userinput>grotag --version</userinput></para>
+
+      <para>To obtain information about Grotag's license, run:</para>
+
+      <para><userinput>grotag --license</userinput></para>
+    </section>
+
+    <section id="command-line-validate">
+      <title>Validate Amigaguide documents</title>
+
+      <para>To validate an Amigaguide document named
+      <filename>some.guide</filename>, run:</para>
+
+      <para><userinput>grotag --validate some.guide</userinput></para>
+
+      <para>In case Grotag detects any inconsistencies, it will report what it
+      would have done in order to fix them. This isn't necessarily what you
+      would have done to fix them, but still shows exactly where something is
+      wrong.</para>
+
+      <para>If you trust Grotag to do the right thing, you can let it fix the
+      reported issues by using the command line option
+      <userinput>--pretty</userinput>.</para>
+    </section>
+
+    <section id="command-line-pretty">
+      <title>Pretty print and fix Amigaguide documents</title>
+
+      <para>Amigaguide never came with an authoring tool or a formal
+      specification of the format. Consequently many existing Amigaguide
+      documents contain little inconsistencies the rather lenient Amigaguide
+      application stilled displayed without any trouble.</para>
+
+      <para>Grotag takes a different approach: it points even tiny little
+      errors, and makes an attempt to fix it in a way that preserves the
+      content while resulting in an documents that does not have the issue
+      anymore.</para>
+
+      <para>Furthermore Grotag cleans up formatting and upper/lower case in
+      mark up.</para>
+
+      <warning>
+        <para>Note that the original version of the Amigaguide document will
+        be overwritten and consequently be lost unless you made a backup copy
+        of it before applying <userinput>--pretty</userinput>.</para>
+      </warning>
+
+      <para>In order to clean up the file <filename>ugly.guide</filename>,
+      run:</para>
+
+      <para><userinput>grotag --pretty ugly.guide</userinput></para>
+
+      <para>In case you want to clean up multiple files, you can pass all of
+      them along at once.</para>
+    </section>
+
+    <section id="command-line-html">
+      <title>Convert Amigaguide documents to HTML</title>
+
+      <para>To convert an Amigaguide document named
+      <filename>some.guide</filename> to a set of HTML documents, run:</para>
+
+      <para><userinput>grotag --html some.guide</userinput></para>
+
+      <para>This creates a folder <filename>some</filename> in the current
+      folder, which contains a <filename>*.html</filename> file for each node.
+      The file for the main node is always called
+      <filename>index.html</filename>.</para>
+
+      <para>To store the output in a different folder, specify it as a second
+      option. For example, to store the HTML version of
+      <filename>some.guide</filename> in <filename>~/guides</filename>,
+      run:</para>
+
+      <para><userinput>grotag --docbook some.guide ~/guides</userinput></para>
+
+      <para>To start reading, open
+      <filename>~/guides/some/index.html</filename>.</para>
+    </section>
+
+    <section id="command-line-docbook">
+      <title>Convert Amigaguide documents to DocBook XML</title>
+
+      <para>To convert an Amigaguide document named
+      <filename>some.guide</filename> to a DocBook XML file named
+      <filename>some.xml</filename>, run:</para>
+
+      <para><userinput>grotag --docbook some.guide</userinput></para>
+
+      <para>To use a different name for the output file, specify a second
+      file. For example, to store the DocBook version of
+      <filename>some.guide</filename> in <filename>other.xml</filename>,
+      run:</para>
+
+      <para><userinput>grotag --docbook some.guide
+      other.xml</userinput></para>
+
+      <para>The DocBook output does not preserve any formatting command like
+      <code>@{b}</code>, <code>@{fg shine}</code> and so in. It only
+      reproduces the structure of the document. Each guide represents a
+      chapter, and each node is a section. If the Amigaguide document
+      specified in the command line links to other documents, they will be
+      included in the DocBook output as additional chapters.</para>
+    </section>
+  </chapter>
+
+  <chapter id="acknowledgement">
+    <title>Acknowledgment</title>
+
+    <para>The following resources have been helpful for developing
+    Grotag:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><ulink
+        url="http://homepage.mac.com/sroy/mrjadapter/">MRJAdapter</ulink>
+        allows to integrate Java applications nicely into Mac OS X.</para>
+      </listitem>
+
+      <listitem>
+        <para><ulink url="http://www.everaldo.com/crystal/">Crystal</ulink> is
+        the icon set use in the toolbar.</para>
+      </listitem>
+
+      <listitem>
+        <para><ulink url="http://safalra.com/other/amigaguide/">Salfara's
+        website</ulink> documents the Amigaguide format quite
+        diligently.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <command>agr</command> command line Amigaguide reader
+        includes a couple of interesting test documents.</para>
+      </listitem>
+    </itemizedlist>
+  </chapter>
+
+  <chapter id="changes">
+    <title>Changes</title>
+
+    <para>This chapter describes improvements compared to earlier versions of
+    Grotag.</para>
+
+    <section>
+      <title>Version 0.3.0, xx-Nov-2016</title>
+
+      <itemizedlist>
+        <listitem>
+          <para>Removed special support for Mac OS X. Grotag still runs under
+          Mac OS X but there are not features like dragging and dropping
+          documents on the icon. The reason for this is that in recent years
+          Apple gradually removed support for Java. Consequently packages like
+          MRJAdapter have not been updated anymore.</para>
+        </listitem>
+
+        <listitem>
+          <para>Added support for Euro character by changing encoding from
+          ISO-8859-1 to cp1252.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Version 0.2.0, 04-Jan-2012</title>
+
+      <itemizedlist>
+        <listitem>
+          <para>Fixed launching under Mac OS X 10.6, which could not execute
+          the included PPC Java launcher.</para>
+        </listitem>
+
+        <listitem>
+          <para>Added menu item <menuchoice>
+              <guimenu>File</guimenu>
+
+              <guimenuitem>Export</guimenuitem>
+            </menuchoice> to export the document currently viewing to other
+          formats.</para>
+        </listitem>
+
+        <listitem>
+          <para>Added GUI settings to be preserved using the Java Preferences
+          API.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section id="v0.1.1">
+      <title>Version 0.1.1, 05-Oct-2008</title>
+
+      <itemizedlist>
+        <listitem>
+          <para>Fixed <guibutton>Back</guibutton> button, which seemingly
+          navigated to random pages.</para>
+        </listitem>
+
+        <listitem>
+          <para>Changed toolbar buttons to use icons instead of text
+          labels.</para>
+        </listitem>
+
+        <listitem>
+          <para>Added <guibutton>Forward</guibutton> button.</para>
+        </listitem>
+
+        <listitem>
+          <para>Added proper About dialog.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section id="v0.1.0">
+      <title>Version 0.1.0, 19-Sep-2008</title>
+
+      <itemizedlist>
+        <listitem>
+          <para>Initial release.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+  </chapter>
+</book>

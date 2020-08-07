@@ -1,0 +1,36 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.sf.grotag</groupId>
+  <artifactId>grotag</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>grotag</name>
+  <url>http://maven.apache.org</url>
+  <properties>
+    <izpack.version>5.0.9</izpack.version>
+    <izpack.staging>${project.build.directory}/staging</izpack.staging>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>com.martiansoftware</groupId>
+      <artifactId>jsap</artifactId>
+      <version>2.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- FIXME: download twelvemonkeys.
+    <dependency>
+      <groupId>com.twelvemonkeys</groupId>
+      <artifactId>twelvemonkeys</artifactId>
+      <version>3.3</version>
+      <scope>compile</scope>
+    </dependency>
+    -->
+  </dependencies>
+</project>

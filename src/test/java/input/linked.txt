@@ -1,0 +1,3 @@
+This is some text file linked linked to from an Amigaguide.
+
+As you can see, Amigaguide commands in at are @{b}not@{ub} processed.

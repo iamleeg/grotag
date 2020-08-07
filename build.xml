@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="build" name="Grotag">
+  <!-- Set up version information. -->
+  <xmlproperty file="version.xml" />
+  <property name="version-tag" value="${grotag-version.version}.${grotag-version.release}.${grotag-version.revision}" />
+
+  <property name="source.dir" location="${basedir}/src/main/java" />
+  <property name="site.dir" location="${basedir}/site" />
+  <property name="tests.dir" location="${basedir}/src/test/java" />
+  <property name="guides.dir" location="${tests.dir}/guides" />
+  <property name="actual.dir" location="${tests.dir}/actual" />
+  <property name="input.dir" location="${tests.dir}/input" />
+  <property name="classes.dir" location="${basedir}/classes" />
+  <property name="styles.dir" location="${classes.dir}/net/sf/grotag/styles" />
+  <property name="external.dir" location="${basedir}/external" />
+  <property name="Grotag.jar" location="${basedir}/Grotag.jar" />
+  <property name="Grotag.zip" location="${basedir}/Grotag-${version-tag}.zip" />
+  <property name="docbook-xsl-version" value="1.74.0" />
+  <property name="version.java" location="${source.dir}/net/sf/grotag/common/Version.java" />
+
+  <xmlcatalog id="catalogs">
+    <dtd location="dtds/docbook-xml/docbookx.dtd" publicId="-//OASIS//DTD DocBook XML V4.5//EN" />
+    <dtd location="dtds/html4/loose.dtd" publicId="-//W3C//DTD HTML 4.01 Transitional//EN" />
+    <dtd location="dtds/xhtml/xhtml1-strict.dtd" publicId="-//W3C//DTD XHTML 1.0 Strict//EN" />
+    <dtd location="dtds/xhtml/xhtml1-transitional.dtd" publicId="-//W3C//DTD XHTML 1.0 Transitional//EN" />
+  </xmlcatalog>
+
+  <macrodef name="docBookToHtml">
+    <attribute name="xml" />
+    <attribute name="html" />
+    <sequential>
+      <xslt classpath="${external.dir}/xalan.jar" in="@{xml}" out="@{html}" style="docbook-xsl/xhtml/docbook.xsl">
+        <xmlcatalog refid="catalogs" />
+      </xslt>
+    </sequential>
+  </macrodef>
+
+  <macrodef name="grotagDocBookToHtml">
+    <attribute name="guide" />
+    <attribute name="xml" />
+    <attribute name="html" />
+    <sequential>
+      <mkdir dir="${tests.dir}/actual" />
+      <java jar="${Grotag.jar}" fork="true" failonerror="true">
+        <arg value="--docbook" />
+        <arg value="@{guide}" />
+        <arg value="@{xml}" />
+        <assertions>
+          <enable />
+        </assertions>
+      </java>
+      <docBookToHtml html="@{html}" xml="@{xml}" />
+    </sequential>
+  </macrodef>
+
+  <macrodef name="grotagToHtml">
+    <attribute name="guide" />
+    <sequential>
+      <mkdir dir="${actual.dir}/html" />
+      <java jar="${Grotag.jar}" fork="true" failonerror="true">
+        <arg value="--html" />
+        <arg value="@{guide}" />
+        <arg value="${actual.dir}/html" />
+        <assertions>
+          <enable />
+        </assertions>
+      </java>
+    </sequential>
+  </macrodef>
+
+  <target depends="jar" description="Build applications." name="build">
+    <!-- Do nothing. -->
+  </target>
+
+  <target depends="jar" description="Build distribution archive Grotag.zip." name="zip">
+    <zip basedir="${basedir}" destfile="${Grotag.zip}" includes="Grotag.jar, *.txt" />
+  </target>
+
+  <target depends="version" description="Build Grotag.jar." name="jar">
+    <unjar src="${external.dir}/JSAP.jar" dest="${classes.dir}" />
+    <unjar src="${external.dir}/serializer.jar" dest="${classes.dir}" />
+    <unjar src="${external.dir}/twelvemonkeys-core.jar" dest="${classes.dir}" />
+    <unjar src="${external.dir}/twelvemonkeys-imageio-core.jar" dest="${classes.dir}" />
+    <unjar src="${external.dir}/twelvemonkeys-imageio-iff.jar" dest="${classes.dir}" />
+    <javac debug="true" destdir="${classes.dir}" includeantruntime="false" source="1.5" srcdir="${source.dir}" target="1.5" />
+    <mkdir dir="${styles.dir}" />
+    <copy file="${source.dir}/amigaguide.css" tofile="${styles.dir}/amigaguide.css" />
+    <jar destfile="${Grotag.jar}">
+      <fileset dir="${classes.dir}" excludes="**/*Test.class" includes="**/*.class, **/*.css, **/*.properties" />
+      <fileset dir="${source.dir}" includes="images/*.png" />
+      <manifest>
+        <attribute name="Implementation-Vendor" value="Thomas Aglassinger" />
+        <attribute name="Implementation-Title" value="Grotag" />
+        <attribute name="Implementation-Version" value="${version-tag}" />
+        <attribute name="Main-Class" value="net.sf.grotag.Grotag" />
+      </manifest>
+    </jar>
+  </target>
+
+  <target description="Update version information." name="version">
+    <xslt in="version.xml" out="${version.java}" style="${source.dir}/Version.java.xsl" />
+  </target>
+
+  <target description="Clean up." name="clean">
+    <delete file="${Grotag.jar}" />
+    <delete file="${Grotag.zip}" />
+    <delete includeemptydirs="true">
+      <fileset dir="${classes.dir}" includes="**/*" />
+    </delete>
+    <delete dir="${tests.dir}/actual" />
+    <delete dir="${site.dir}/examples" />
+    <delete file="${site.dir}/index.html" />
+    <delete file="${site.dir}/license.txt" />
+  </target>
+
+  <target name="root.html" depends="jar">
+    <grotagToHtml guide="${input.dir}/root.guide" />
+  </target>
+
+  <target name="dev.html" depends="jar">
+    <grotagToHtml guide="${guides.dir}/reference_library/devices/Dev_1" />
+  </target>
+
+  <target name="lha.dbh" depends="jar">
+    <grotagDocBookToHtml guide="${guides.dir}/LhA.guide" html="${actual.dir}/lha.html" xml="${actual.dir}/lha.xml" />
+  </target>
+
+  <target name="agr_test.dbh" depends="jar">
+    <grotagDocBookToHtml guide="${guides.dir}/agr_test.guide"
+                         html="${actual.dir}/agr_test.html"
+                         xml="${actual.dir}/agr_test.xml" />
+  </target>
+
+  <target name="basics.dbh" depends="jar">
+    <grotagDocBookToHtml guide="${input.dir}/basics.guide"
+                         html="${actual.dir}/basics.html"
+                         xml="${actual.dir}/basics.xml" />
+  </target>
+
+  <target name="dev.dbh" depends="jar">
+    <grotagDocBookToHtml guide="${guides.dir}/reference_library/devices/Dev_1"
+                         html="${actual.dir}/dev.html"
+                         xml="${actual.dir}/dev.xml" />
+  </target>
+
+  <target name="lib.dbh" depends="jar">
+    <grotagDocBookToHtml guide="${guides.dir}/reference_library//libraries/Lib_1"
+                         html="${actual.dir}/lib.html"
+                         xml="${actual.dir}/lib.xml" />
+  </target>
+
+  <target name="root.dbh" depends="jar">
+    <grotagDocBookToHtml guide="${input.dir}/root.guide" html="${actual.dir}/root.html" xml="${actual.dir}/root.xml" />
+  </target>
+
+  <target name="amigaguide.dbh" depends="jar">
+    <grotagDocBookToHtml guide="${guides.dir}/amigaguide.guide"
+                         html="${actual.dir}/amigaguide.html"
+                         xml="${actual.dir}/amigaguide.xml" />
+  </target>
+
+  <target name="user-guide">
+    <copy todir="${site.dir}/images">
+      <fileset dir="${source.dir}/images">
+        <include name="back.png"/>
+        <include name="contents.png"/>
+        <include name="forward.png"/>
+        <include name="help.png"/>
+        <include name="home.png"/>
+        <include name="index.png"/>
+        <include name="next.png"/>
+        <include name="previous.png"/>
+      </fileset>
+    </copy>
+    <docBookToHtml html="${site.dir}/user-guide.html" xml="${source.dir}/site/user-guide.xml" />
+  </target>
+
+  <target description="Setup project for the first time." name="setup">
+    <unzip dest="${basedir}" src="${external.dir}/docbook-xsl.zip" />
+    <delete dir="docbook-xsl" />
+    <move file="docbook-xsl-${docbook-xsl-version}" tofile="docbook-xsl" />
+  </target>
+
+  <target name="site.zip" depends="examples, user-guide">
+    <zip destfile="site.zip" basedir="${site.dir}" />
+  </target>
+
+  <target name="examples" depends="basics.dbh, root.dbh">
+    <mkdir dir="${site.dir}/examples" />
+    <copy file="${source.dir}/site/index.html" todir="${site.dir}" />
+    <copy file="license.txt" todir="${site.dir}" />
+    <copy file="${actual.dir}/basics.html" todir="${site.dir}/examples" />
+    <copy file="${actual.dir}/basics.xml" todir="${site.dir}/examples" />
+    <copy file="${actual.dir}/root.html" todir="${site.dir}/examples" />
+    <copy file="${actual.dir}/root.xml" todir="${site.dir}/examples" />
+    <copy file="${input.dir}/basics.guide" todir="${site.dir}/examples" />
+    <copy file="${input.dir}/blue.guide" todir="${site.dir}/examples" />
+    <copy file="${input.dir}/green.guide" todir="${site.dir}/examples" />
+    <copy file="${input.dir}/embedded.txt" todir="${site.dir}/examples" />
+    <copy file="${input.dir}/linked.txt" todir="${site.dir}/examples" />
+    <copy file="${input.dir}/red.guide" todir="${site.dir}/examples" />
+    <copy file="${input.dir}/root.guide" todir="${site.dir}/examples" />
+  </target>
+</project>
